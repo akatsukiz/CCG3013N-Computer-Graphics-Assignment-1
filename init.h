@@ -26,6 +26,8 @@ void renderMaster()
     renderTemperatureInfoDashboardText(); // Render the temperature info dashboard text
     renderTemperatureSubInfoText(); // Render the temperature sub info text
     renderPowerUsageLabelText(); // Render the power usage label text
+    renderPowerUsageInfoDashboard(); // Render the power usage info dashboard
+    renderPowerUsageInfoDashboardText(); // Render the power usage info dashboard text
     renderPowerUsageSubInfoText(); // Render the power usage sub info text
     renderDashboard3Button1(); // Render the dashboard 3 button 1
     renderDashboard3Button2(); // Render the dashboard 3 button 2

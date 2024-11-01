@@ -34,24 +34,49 @@ void renderDashboardText()
 
 void renderSettingsIcon()
 {
-    glColor4f(COLOUR_BLACK);
+    glColor4f(COLOUR_BLACK); // Suggestions: Dark shade of gray for UI design
     settingsIcon.translate(505, 490);
-    settingsIcon.drawTorus(12, 6, 0, 365);
-    // Top
+    settingsIcon.drawTorus(12, 5, 0, 360);
+    // Get current position
+    GLfloat originalX = settingsIcon.x;
+    GLfloat originalY = settingsIcon.y;
+
+    // Define Trapezoid shape
+    int trapezoidHeight = 10;
+    int trapezoidWidthLong = 20;
+    int trapezoidWidthShort = 8;
+
+    // Radius offset for the trapezoid
+    int radiusOffset = 17;
+
+    // Top gear
+    settingsIcon.orbitTo(originalX, originalY, radiusOffset, 0);
+    int topLeftX = settingsIcon.x - trapezoidWidthLong / 2;
+    int topLeftY = settingsIcon.y - trapezoidHeight / 2;
+    int topRightX = settingsIcon.x + trapezoidWidthLong / 2;
+    int topRightY = settingsIcon.y - trapezoidHeight / 2;
+    int bottomRightX = settingsIcon.x + trapezoidWidthShort / 2;
+    int bottomRightY = settingsIcon.y + trapezoidHeight / 2;
+    int bottomLeftX = settingsIcon.x - trapezoidWidthShort / 2;
+    int bottomLeftY = settingsIcon.y + trapezoidHeight / 2;
     settingsIcon.drawIrregularRectangle(
-        1458.0f, 1043.0f, // Bottom Left
-        1473.0f, 1043.0f, // Bottom Right
-        1468.0f, 1050.0f, // Top Right   
-        1462.0f, 1050.0f  // Top Left
-    );
-    // Bottom
-    settingsIcon.drawIrregularRectangle(
-        1458.0f, 1000.0f, // Bottom Left
-        1473.0f, 1000.0f, // Bottom Right
-        1468.0f, 1007.0f, // Top Right   
-        1462.0f, 1007.0f  // Top Left
+        bottomLeftX, bottomLeftY,   // Bottom Left
+        bottomRightX, bottomRightY, // Bottom Right
+        topRightX, topRightY,       // Top Right
+        topLeftX, topLeftY          // Top Left
     );
 
+    for (int i = 45; i < 365; i+= 45)
+    {
+        settingsIcon.orbitTo(originalX, originalY, radiusOffset, i);
+        settingsIcon.drawIrregularRectangle(
+            bottomLeftX, bottomLeftY,   // Bottom Left
+            bottomRightX, bottomRightY, // Bottom Right
+            topRightX, topRightY,       // Top Right
+            topLeftX, topLeftY          // Top Left
+        );
+    }
+    
 }
 
 void renderSettingsText()
@@ -188,7 +213,6 @@ void renderWelcomeMessages()
     glColor4f(COLOUR_LIGHT_BLACK);
     WelcomeMessages.drawText(80, 850, "Welcome home Rei. The weather today is quite hot,", 2.2f, 3.2f);
     WelcomeMessages.drawText(80, 810, "please remember to keep yourself hydrated!", 2.2f, 3.2f);
-
 }
 
 void renderWeatherInfoText()
@@ -196,7 +220,7 @@ void renderWeatherInfoText()
     glColor4f(COLOUR_BLACK);
     WeatherInfoText.drawText(125, 595, "30", 3.6f, 5.3f);
     WeatherInfoText.translate(-760, 95);
-    WeatherInfoText.drawTorus(6, 4, 0, 365);
+    WeatherInfoText.drawTorus(6, 4, 0, 360);
     WeatherInfoText.drawText(110, 555, "Weather", 2.2f, 3.2f);
     WeatherInfoText.drawText(120, 515, "Sunny", 2.2f, 3.2f);
 }
@@ -214,11 +238,10 @@ void renderTemperatureInfoText()
     glColor4f(COLOUR_BLACK);
     TemperatureInfoText.drawText(590, 595, "22", 3.6f, 5.3f);
     TemperatureInfoText.translate(-295, 95);
-    TemperatureInfoText.drawTorus(6, 4, 0, 365);
+    TemperatureInfoText.drawTorus(6, 4, 0, 360);
     TemperatureInfoText.drawText(580, 555, "Indoor", 2.2f, 3.2f);
     TemperatureInfoText.drawText(530, 515, "Temperature", 2.2f, 3.2f);
 }
-
 
 void renderAddDataText()
 {
@@ -237,6 +260,7 @@ Object TemperatureInfoDashboardText = Object(WINDOWS_CENTER_X, WINDOWS_CENTER_Y)
 Object TemperatureSubInfoText = Object(WINDOWS_CENTER_X, WINDOWS_CENTER_Y);
 Object PowerUsageLabelText = Object(WINDOWS_CENTER_X, WINDOWS_CENTER_Y);
 Object PowerUsageInfoDashboard = Object(WINDOWS_CENTER_X, WINDOWS_CENTER_Y);
+Object PowerUsageInfoDashboardText = Object(WINDOWS_CENTER_X, WINDOWS_CENTER_Y);
 Object PowerUsageSubInfoText = Object(WINDOWS_CENTER_X, WINDOWS_CENTER_Y);
 
 void renderTemperatureLabelText()
@@ -250,13 +274,16 @@ void renderTemperatureInfoDashboard()
     // Temperature Gauge
     TemperatureInfoDashboard.translate(280, 160);
     glColor4f(COLOUR_DARK_GREY);
-    TemperatureInfoDashboard.drawTorus(150, 17, 230, 130); // Outer ring (use blue color)
+    TemperatureInfoDashboard.drawTorus(150, 17, 230, 130); // Outer ring (use grey color)
     glColor4f(COLOUR_LIGHT_BLUE);
-    TemperatureInfoDashboard.drawTorus(150, 17, 230, 70); // Outer ring (use blue color)
+    TemperatureInfoDashboard.drawTorus(150, 17, 230, 70); // Progress ring (use blue color)
     glColor4f(COLOUR_WHITE);
-    TemperatureInfoDashboard.drawCircle(120, 0, 360);     // Inner circle (white)
+    TemperatureInfoDashboard.drawCircle(120, 0, 360); // Inner circle (white)
     glColor4f(COLOUR_BLACK);
     TemperatureInfoDashboard.drawTorus(108, 7, 0, 360); // Inner ring (black)
+    glColor4f(COLOUR_WHITE);
+    TemperatureInfoDashboard.translate(135, 70);
+    TemperatureInfoDashboard.drawCircle(25, 0, 360); // White Circle
 }
 
 void renderTemperatureInfoDashboardText()
@@ -264,7 +291,7 @@ void renderTemperatureInfoDashboardText()
     glColor4f(COLOUR_BLACK);
     TemperatureInfoDashboardText.drawText(1190, 680, "22", 5.0f, 7.0f);
     TemperatureInfoDashboardText.translate(330, 190);
-    TemperatureInfoDashboardText.drawTorus(8, 5, 0, 365);
+    TemperatureInfoDashboardText.drawTorus(8, 5, 0, 360);
     TemperatureInfoDashboardText.drawText(1230, 625, "c", 3.2f, 4.2f);
 }
 
@@ -274,12 +301,36 @@ void renderPowerUsageLabelText()
     PowerUsageLabelText.drawText(1550, 900, "Power", 3.2f, 4.8f);
 }
 
+void renderPowerUsageInfoDashboard()
+{
+    // Power Usage Gauge
+    PowerUsageInfoDashboard.translate(650, 160);
+    glColor4f(COLOUR_DARK_GREY);
+    PowerUsageInfoDashboard.drawTorus(150, 17, 0, 360); // Outer ring (use grey color)
+    glColor4f(COLOUR_RED);
+    PowerUsageInfoDashboard.drawTorus(150, 17, 225, 15); // Progress ring (use yellow color)
+    glColor4f(COLOUR_WHITE);
+    PowerUsageInfoDashboard.drawCircle(120, 0, 360); // Inner circle (white)
+    glColor4f(COLOUR_BLACK);
+    PowerUsageInfoDashboard.drawTorus(108, 7, 0, 360); // Inner ring (black)
+    glColor4f(COLOUR_WHITE);
+}
+
+void renderPowerUsageInfoDashboardText()
+{
+    glColor4f(COLOUR_BLACK);
+    PowerUsageInfoDashboardText.drawText(1550, 680, "135", 5.0f, 7.0f);
+    PowerUsageInfoDashboardText.translate(330, 190);
+    PowerUsageInfoDashboardText.drawTorus(8, 5, 0, 360);
+    PowerUsageInfoDashboardText.drawText(1575, 625, "kwh", 3.2f, 4.2f);
+}
+
 void renderTemperatureSubInfoText()
 {
     glColor4f(COLOUR_BLACK);
     TemperatureSubInfoText.drawText(1125, 515, "22", 2.2f, 3.2f);
     TemperatureSubInfoText.translate(210, -2);
-    TemperatureSubInfoText.drawTorus(4, 3, 0, 365);
+    TemperatureSubInfoText.drawTorus(4, 3, 0, 360);
     TemperatureSubInfoText.drawText(1190, 515, "in 20 min", 2.2f, 3.2f);
 }
 
@@ -403,7 +454,8 @@ void renderMusicInfoText()
     MusicInfoText.drawItalicText(1630, 105, "Koala", 2.2f, 0.2f);
 }
 
-void renderMusicControl() {
+void renderMusicControl()
+{
     glColor4f(COLOUR_BLACK);
     MusicControl.translate(250, 500);
 }
@@ -465,6 +517,5 @@ void renderMoreIcon4()
     MoreIcon.translate(11, 0);
     MoreIcon.drawCircle(4, 0, 360);
 }
-
 
 #pragma endregion More Icon
