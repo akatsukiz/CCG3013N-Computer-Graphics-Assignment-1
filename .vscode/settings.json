@@ -25,5 +25,10 @@
     "typeinfo": "cpp",
     "xutility": "cpp"
   },
-  "liveServer.settings.port": 5501
+  "liveServer.settings.port": 5501,
+  "files.autoSave": "afterDelay",
+  "editor.fontSize": 16,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true
 }

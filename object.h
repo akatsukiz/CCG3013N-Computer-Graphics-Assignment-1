@@ -36,7 +36,6 @@ public:
 
 	// Rounded rectangle
 	void drawRoundedRectFill(GLfloat width, GLfloat height, GLfloat radius);
-	void drawRoundedRectLine(GLfloat width, GLfloat height, GLfloat radius, GLfloat thickness);
 
 	// 2D transformation
 	void translate(GLfloat tX, GLfloat tY);

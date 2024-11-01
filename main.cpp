@@ -5,7 +5,7 @@ int main()
 {
 	// Initialize the windows
 	init();
-
+ 
 	// Render the scene
 	glutDisplayFunc(renderMaster);
 

@@ -217,63 +217,6 @@ void Object::drawRoundedRectFill(GLfloat width, GLfloat height, GLfloat radius)
 	this->y = originalY;
 }
 
-void Object::drawRoundedRectLine(GLfloat width, GLfloat height, GLfloat radius, GLfloat thickness)
-{
-	GLfloat originalX = this->x;
-	GLfloat originalY = this->y;
-	GLfloat startX1, startX2, startX3, endX1, endX2, endX3;
-	GLfloat startY1, startY2, startY3, endY1, endY2, endY3;
-	startX1 = this->x - (width / 2) - (thickness / 2);
-	startX2 = this->x - (width / 2) + (thickness / 2);
-	startX3 = this->x - (width / 2) + radius;
-	endX1 = this->x + (width / 2) - radius;
-	endX2 = this->x + (width / 2) - (thickness / 2);
-	endX3 = this->x + (width / 2) + (thickness / 2);
-	startY1 = this->y - (height / 2) - (thickness / 2);
-	startY2 = this->y - (height / 2) + (thickness / 2);
-	startY3 = this->y - (height / 2) + radius;
-	endY1 = this->y + (height / 2) - radius;
-	endY2 = this->y + (height / 2) - (thickness / 2);
-	endY3 = this->y + (height / 2) + (thickness / 2);
-
-	GLfloat diameter = radius * 2;
-
-	// Draw the rectangles
-	// Start rectangle
-	this->drawQuad(startX1, startY3, startX2, startY3, startX2, endY1, startX1, endY1);
-	// End rectangle
-	this->drawQuad(endX2, startY3, endX3, startY3, endX3, endY1, endX2, endY1);
-	// Top rectangle
-	this->drawQuad(startX3, endY2, endX1, endY2, endX1, endY3, startX3, endY3);
-	// Bottom rectangle
-	this->drawQuad(startX3, startY1, endX1, startY1, endX1, startY2, startX3, startY2);
-
-	// Draw the corners
-	// Top left corner
-	this->x = startX3;
-	this->y = endY1;
-	this->drawTorus(radius, thickness, 270, 360);
-
-	// Top right corner
-	this->x = endX1;
-	this->y = endY1;
-	this->drawTorus(radius, thickness, 0, 90);
-
-	// Bottom right corner
-	this->x = endX1;
-	this->y = startY3;
-	this->drawTorus(radius, thickness, 90, 180);
-
-	// Bottom left corner
-	this->x = startX3;
-	this->y = startY3;
-	this->drawTorus(radius, thickness, 180, 270);
-
-	// Reset the position
-	this->x = originalX;
-	this->y = originalY;
-}
-
 // 2D transformation
 void Object::translate(GLfloat tX, GLfloat tY)
 {

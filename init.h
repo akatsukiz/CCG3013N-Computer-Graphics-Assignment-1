@@ -9,16 +9,23 @@ void renderMaster()
 {
     // Render code here
     renderNavBar();     // Render the navigation bar on top
+    renderAppIcon();    // Render the app icon
     renderAppNameText(); // Render the app name text
+    renderDashboardIcon(); // Render the dashboard icon
     renderDashboardText(); // Render the dashboard text
     renderSettingsIcon(); // Render the settings icon
     renderSettingsText(); // Render the settings text
+    renderControlIcon(); // Render the control icon
     renderControlText(); // Render the control text
     renderDashboard1(); // Render the dashboard 1
     renderWelcomeMessages(); // Render the welcome messages
+    renderWeatherIcon(); // Render the weather icon
     renderWeatherInfoText(); // Render the weather info text
+    renderHumidityIcon(); // Render the humidity icon
     renderHumidityInfoText(); // Render the humidity info text
+    renderTemperatureIcon(); // Render the temperature icon
     renderTemperatureInfoText(); // Render the temperature info text
+    renderAddData(); // Render the add data
     renderAddDataText(); // Render the add data text
     renderDashboard2(); // Render the dashboard 2
     renderTemperatureLabelText(); // Render the temperature label text
@@ -38,19 +45,31 @@ void renderMaster()
     renderDashboard3Button7(); // Render the dashboard 3 button 7
     renderDashboard3Button8(); // Render the dashboard 3 button 8
     renderLightText(); // Render the lighting text
+    renderLightButton(); // Render the light icon
     renderHeatText(); // Render the heat text
+    renderHeatButton(); // Render the heat icon
     renderAirConditionerText(); // Render the air conditioner text
+    renderAirConditionerButton(); // Render the air conditioner icon
     renderCameraText(); // Render the camera text
+    renderCameraButton(); // Render the camera icon
     renderDoorText(); // Render the door text
+    renderDoorButton(); // Render the door icon
     renderAlarmText(); // Render the alarm text
+    renderAlarmButton(); // Render the alarm icon
     renderBlindsText(); // Render the blinds text
+    renderBlindsButton(); // Render the blinds icon
     renderMusicText(); // Render the music text
+    renderMusicButton(); // Render the music button
     renderDashboard4Control1(); // Render the dashboard 4 control 1
     renderLightingText(); // Render the lighting text
+    renderBulbIcon(); // Render the bulb icon
+    renderRoomControl(); // Render the room control
     renderRoomControlText(); // Render the room control text
     renderDashboard4Control2(); // Render the dashboard 4 control 2
     renderMusicInfoText(); // Render the music info text
     renderMusicPlayerText(); // Render the music player text
+    renderMusicIcon(); // Render the music icon
+    renderMusicControl(); // Render the music control
     renderMoreIcon1(); // Render the more icon1
     renderMoreIcon2(); // Render the more icon2
     renderMoreIcon3(); // Render the more icon3
